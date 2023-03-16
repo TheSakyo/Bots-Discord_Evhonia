@@ -127,7 +127,7 @@ function stop(queue, author) {
         playable = false; // Définit la lecture sur faux
         actualQueue = null; // Définit la file d'attente actuelle sur 'NULL'
 
-        embedMessage = BotManager.sendEmbedMsg(0x34eb4c, null, null, null, "✅ *La lecture a été arrétée !*", null, null, `${author.tag}`, author.displayAvatarURL());
+        embedMessage = BotManager.sendEmbedMsg(0x34eb4c, null, null, null, "✅ *La lecture a été arrétée et la file d'attente a été vidé !*", null, null, `${author.tag}`, author.displayAvatarURL());
 
     } else { embedMessage = BotManager.sendEmbedMsg(0xe02d2d, null, null, null, "⚠️ *Il y'a aucune lecture en cours !*", null, null, `${author.tag}`, author.displayAvatarURL()); }                                
                         /* ----------------- */
