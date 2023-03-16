@@ -52,8 +52,7 @@ function add(bot, author, message, query) {
         });
                     /* ---------------------------- */
 
-        if(queriesVideo.length <= 0) { queriesVideo.push(song); }
-        else { queriesVideo.splice(0, 0, song); } 
+        queriesVideo.splice(0, 0, song);
 
         return BotManager.sendEmbedMsg(0x34eb4c, null, null, null, `✅ *Le **son** de la **video** a été ajouté à la **file d'attente : \`${song.name}\`***`, null, null, `${author.tag}`, author.displayAvatarURL());;
         
@@ -172,7 +171,9 @@ function run(bot, video, message) {
 */
 function stop(bot, queue, author) {
     
+    queriesVideo = []; // Vide la liste d'attente
     queue.stop(); // Arrête le stream
+    playable = false; // Définit la lecture sur faux
 
     let embedMessage = { embeds: [BotManager.sendEmbedMsg(0x9c36f5, null, null, null, 
         `*⏸️ -- La lecture est terminée, vous pouvez toujours rajouter des vidéos dans la file d'attente ` + 
@@ -180,7 +181,6 @@ function stop(bot, queue, author) {
         `${author.tag}`, author.displayAvatarURL())] };
 
     queue.textChannel.send(embedMessage);
-    playable = false;
 }
 
 /* -----------------------------------  */
@@ -240,12 +240,8 @@ function events(bot, author, message) {
 
     }).on('empty', queue => {
 
-        let embedMessage = { embeds: [BotManager.sendEmbedMsg(0x9c36f5, null, null, null, 
-            `*⏸️ -- Je remarque que je suis seul dans le salon vocal dédié à la lecture, je me déconnecte donc de ce salon 😣 -- ⏸️*`,
-                null, null, `${author.tag}`, author.displayAvatarURL())] };
-
-        queue.textChannel.send(embedMessage);
-        playable = false;
+        queue.stop(); // Arrête le stream
+        playable = false; // Définit la lecture sur faux
 
     });
         
