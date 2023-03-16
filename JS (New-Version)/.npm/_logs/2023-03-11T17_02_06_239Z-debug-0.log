@@ -1,0 +1,104 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@8.19.3
+2 info using node@v17.9.1
+3 timing npm:load:whichnode Completed in 0ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:project Completed in 10ms
+10 timing config:load:file:/home/container/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 1ms
+12 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:validate Completed in 0ms
+15 timing config:load:credentials Completed in 1ms
+16 timing config:load:setEnvs Completed in 0ms
+17 timing config:load Completed in 15ms
+18 timing npm:load:configload Completed in 15ms
+19 timing npm:load:mkdirpcache Completed in 16ms
+20 timing npm:load:mkdirplogs Completed in 0ms
+21 verbose title npm install discord.js
+22 verbose argv "install" "discord.js"
+23 timing npm:load:setTitle Completed in 0ms
+24 timing config:load:flatten Completed in 2ms
+25 timing npm:load:display Completed in 3ms
+26 verbose logfile logs-max:10 dir:/home/container/.npm/_logs
+27 verbose logfile /home/container/.npm/_logs/2023-03-11T17_02_06_239Z-debug-0.log
+28 timing npm:load:logFile Completed in 4ms
+29 timing npm:load:timers Completed in 0ms
+30 timing npm:load:configScope Completed in 0ms
+31 timing npm:load Completed in 40ms
+32 timing arborist:ctor Completed in 0ms
+33 silly logfile done cleaning log files
+34 timing idealTree:init Completed in 38ms
+35 timing idealTree:userRequests Completed in 1ms
+36 silly idealTree buildDeps
+37 silly fetch manifest discord.js@^14.7.1
+38 timing arborist:ctor Completed in 0ms
+39 http fetch GET 200 https://registry.npmjs.org/discord.js 27ms (cache hit)
+40 silly placeDep ROOT discord.js@14.7.1 REPLACE for:  want: ^14.7.1
+41 timing idealTree:#root Completed in 47ms
+42 timing idealTree:node_modules/discord.js Completed in 0ms
+43 timing idealTree:buildDeps Completed in 47ms
+44 timing idealTree:fixDepFlags Completed in 1ms
+45 timing idealTree Completed in 88ms
+46 timing reify:loadTrees Completed in 89ms
+47 timing reify:diffTrees Completed in 2ms
+48 silly reify moves {}
+49 timing reify:retireShallow Completed in 1ms
+50 timing reify:createSparse Completed in 0ms
+51 timing reify:loadBundles Completed in 0ms
+52 silly audit bulk request {
+52 silly audit   '@discordjs/builders': [ '1.4.0' ],
+52 silly audit   '@discordjs/collection': [ '1.3.0' ],
+52 silly audit   '@discordjs/rest': [ '1.5.0' ],
+52 silly audit   '@discordjs/util': [ '0.1.0' ],
+52 silly audit   '@sapphire/async-queue': [ '1.5.0' ],
+52 silly audit   '@sapphire/shapeshift': [ '3.8.1' ],
+52 silly audit   '@sapphire/snowflake': [ '3.4.0' ],
+52 silly audit   '@tokenizer/token': [ '0.3.0' ],
+52 silly audit   '@types/node': [ '18.15.0' ],
+52 silly audit   '@types/ws': [ '8.5.4' ],
+52 silly audit   busboy: [ '1.6.0' ],
+52 silly audit   'discord-api-types': [ '0.37.35' ],
+52 silly audit   'fast-deep-equal': [ '3.1.3' ],
+52 silly audit   'file-type': [ '18.2.1' ],
+52 silly audit   ieee754: [ '1.2.1' ],
+52 silly audit   inherits: [ '2.0.4' ],
+52 silly audit   lodash: [ '4.17.21' ],
+52 silly audit   'lodash.snakecase': [ '4.1.1' ],
+52 silly audit   'peek-readable': [ '5.0.0' ],
+52 silly audit   'readable-stream': [ '3.6.2' ],
+52 silly audit   'readable-web-to-node-stream': [ '3.0.2' ],
+52 silly audit   'safe-buffer': [ '5.2.1' ],
+52 silly audit   streamsearch: [ '1.1.0' ],
+52 silly audit   string_decoder: [ '1.3.0' ],
+52 silly audit   strtok3: [ '7.0.0' ],
+52 silly audit   'token-types': [ '5.0.1' ],
+52 silly audit   'ts-mixer': [ '6.0.3' ],
+52 silly audit   tslib: [ '2.5.0' ],
+52 silly audit   undici: [ '5.20.0' ],
+52 silly audit   'util-deprecate': [ '1.0.2' ],
+52 silly audit   ws: [ '8.13.0' ],
+52 silly audit   'discord.js': [ '14.7.1' ]
+52 silly audit }
+53 timing reify:unpack Completed in 2ms
+54 timing reify:unretire Completed in 0ms
+55 timing build:queue Completed in 0ms
+56 timing build:deps Completed in 1ms
+57 timing build Completed in 1ms
+58 timing reify:build Completed in 1ms
+59 timing reify:trash Completed in 0ms
+60 timing reify:save Completed in 8ms
+61 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 344ms
+62 timing auditReport:getReport Completed in 346ms
+63 silly audit report {}
+64 timing auditReport:init Completed in 0ms
+65 timing reify:audit Completed in 346ms
+66 timing reify Completed in 445ms
+67 timing command:install Completed in 449ms
+68 verbose exit 0
+69 timing npm Completed in 545ms
+70 info ok
