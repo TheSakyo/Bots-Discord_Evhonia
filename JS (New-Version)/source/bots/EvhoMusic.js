@@ -70,7 +70,7 @@ class EvhoMusic {
                 value: "\u200b",
             },
             {
-                name: '• __' + cmdPrefix + 'help :__',
+                name: '• __' + cmdPrefix + 'help / ' + cmdPrefix + '? :__',
                 value: "***- Affiche la liste des commandes***",
             },
             {
@@ -78,62 +78,59 @@ class EvhoMusic {
                 value: "***- Ajoute une piste à la file d'attente***",
             },
             {
-                name: '• __' + cmdPrefix + 'clear-queue :__',
+                name: '• __' + cmdPrefix + 'clear-queue / ' + cmdPrefix + 'cq :__',
                 value: "***- Supprime tous les pistes de la file d'attente***",
-            },
-            {
-                name: '• __' + cmdPrefix + 'np :__',
-                value: "***- Affiche les morceaux en cours***",
-            },
-            {
-                name: '• __' + cmdPrefix + 'pause :__',
-                value: "***- Met en pause la lecture***",
-            },
-            {
-                name: '• __' + cmdPrefix + 'play :__',
-                value: "***- Lance la lecture de la file d'attente et connecte le bot dans son salon vocal (Salon -  [Musique 🎶]) ***",
-            },
-            {
-                name: '• __' + cmdPrefix + 'previous :__',
-                value: "***- Joue le morceau précédent***",
             },
             {
                 name: '• __' + cmdPrefix + 'queue :__',
                 value: "***- Liste les pistes de la file d'attentes***",
             },
             {
-                name: '• __' + cmdPrefix + 'replay :__',
-                value: "***- Rejoue le morceau en cours***",
+                name: '• __' + cmdPrefix + 'pause :__',
+                value: "***- Met en pause la lecture***",
             },
             {
                 name: '• __' + cmdPrefix + 'resume :__',
                 value: "***- Reprend la lecture***",
             },
             {
-                name: '• __' + cmdPrefix + 'search :__',
-                value: "***- Recherche une chanson***",
+                name: '• __' + cmdPrefix + 'stop :__',
+                value: "***- Arrête la lecture et vide la liste d'attente***",
             },
             {
-                name: '• __' + cmdPrefix + 'seek :__',
-                value: "***- Modifie la position de la piste en cours***",
+                name: '• __' + cmdPrefix + 'play :__',
+                value: "***- Lance la lecture de la file d'attente et connecte le bot dans son salon vocal (Salon -  [Musique 🎶]) ***",
+            },
+            {
+                name: '• __' + cmdPrefix + 'replay :__',
+                value: "***- Rejoue le morceau en cours***",
+            },
+            {
+                name: '• __' + cmdPrefix + 'previous :__',
+                value: "***- Joue le morceau précédent***",
             },
             {
                 name: '• __' + cmdPrefix + 'skip :__',
                 value: "***- Passe à la piste suivante***",
             },
             {
-                name: '• __' + cmdPrefix + 'stop :__',
-                value: "***- Arrête la lecture***",
+                name: '• __' + cmdPrefix + 'search-skip / ' + cmdPrefix + 'ss :__',
+                value: "***- Recherche un morceau dans la file d'attente et la passe comme piste suivantes***",
             },
             {
-                name: '• __' + cmdPrefix + 'vote-skip :__',
+                name: '• __' + cmdPrefix + 'vote-skip  / ' + cmdPrefix + 'vs :__',
                 value: "***- Lance un vote pour passer à la prochaine piste***",
+            },
+            {
+                name: '• __' + cmdPrefix + 'shuffle :__',
+                value: "***- Mélange les morceaux de la file piste sauf celle en cours***",
             },
             // Espace Vide //
             {
                 name: "\u200b",
                 value: "\u200b",
             },
+            // Espace Vide //
         ];
         // Message d'aide ayant la liste des commandes du Bot en question //   
 
@@ -163,7 +160,8 @@ class EvhoMusic {
                         /*  --------------------- */
 
             //Commande d'aide (Liste des Commandes)
-            if(BotManager.msgCmdHasOnlyCmdPrefix(messageContent, cmdPrefix, cmdAlias) || BotManager.msgCmdIs(messageContent, cmdPrefix, cmdAlias, "help")) {
+            if(BotManager.msgCmdHasOnlyCmdPrefix(messageContent, cmdPrefix, cmdAlias) || 
+               BotManager.msgCmdIs(messageContent, cmdPrefix, cmdAlias, "help") || BotManager.msgCmdIs(messageContent, cmdPrefix, cmdAlias, "?")) {
                 
                 embedMessage = BotManager.sendEmbedMsg(0x9c36f5, "**__Besoin d'aide ? :__**", bot.user.username, bot.user.displayAvatarURL(), 
                                 "*🎶 Voici mes différentes commandes utiles 🎶*", helpFields, null, `${author.tag}`, author.displayAvatarURL());
@@ -191,6 +189,12 @@ class EvhoMusic {
                 
                 embedMessage = MusicManager.checkUserIsNotInMusicChannel(author, member);
                 if(embedMessage == null) { embedMessage = MusicManager.play(bot, author, message);  } 
+
+            //Commande pour stopper la lecture de la file d'attente
+            } else if(BotManager.msgCmdIs(messageContent, cmdPrefix, cmdAlias, "stop")) { 
+                
+                embedMessage = MusicManager.checkUserIsNotInMusicChannel(author, member);
+                if(embedMessage == null) { embedMessage = MusicManager.stop(MusicManager.getActualQueue(), author);  } 
             } 
 
                                         /* ----------- */

@@ -7,11 +7,23 @@ const { GuildMember, VoiceChannel } = require("discord.js");
 
 /* ---------------------------------------  */
 
+let actualQueue = null;
+
 let queriesVideo = [];
 let playable = false;
 
 /* ----------------------------  */
 
+/** 
+* 
+* Récupère la file d'attente actuelle.
+*
+* @return {Queue} - La fille d'attente actuelle.
+*/
+function getActualQueue() { return actualQueue; }
+
+
+/* -----------------------------------  */
 
 /** 
 * Permet d'ajouter une musique à une file d'attente.
@@ -94,6 +106,35 @@ function play(bot, author, message) {
 
     return embedMessage; //Retourne la réponse.
 }
+/** 
+* @private 
+* Permet de stopper la lecture associé à une file d'attente.
+*
+* @param {Queue} queue - La file d'attente en question (gérer par distube).
+* @param {User} author - Auteur de la demande.
+*
+*/
+function stop(queue, author) {
+
+    let embedMessage = null; //Ceci nous permettra de récupérer le Contenue de notre Réponse.
+
+                        /* ----------------- */
+
+    if(playable && queue) {   
+        
+        queriesVideo = []; // Vide la liste d'attente
+        queue.stop(); // Arrête le stream
+        playable = false; // Définit la lecture sur faux
+        actualQueue = null; // Définit la file d'attente actuelle sur 'NULL'
+
+        embedMessage = BotManager.sendEmbedMsg(0x34eb4c, null, null, null, "✅ *La lecture a été arrétée !*", null, null, `${author.tag}`, author.displayAvatarURL());
+
+    } else { embedMessage = BotManager.sendEmbedMsg(0xe02d2d, null, null, null, "⚠️ *Il y'a aucune lecture en cours !*", null, null, `${author.tag}`, author.displayAvatarURL()); }                                
+                        /* ----------------- */
+
+
+    return embedMessage; //Retourne la réponse.
+}
 
 /* -----------------------------------------------  */
 
@@ -164,16 +205,14 @@ function run(bot, video, message) {
 * @private 
 * Arrête de jouer le son dans la file d'attente.
 *
-* @param {Client} bot - Le bot en question.
 * @param {Queue} queue - La file d'attente en question (gérer par distube).
 * @param {User} author - Auteur de la demande.
 *
 */
-function stop(bot, queue, author) {
+function unrun(queue, author) {
     
-    queriesVideo = []; // Vide la liste d'attente
-    queue.stop(); // Arrête le stream
-    playable = false; // Définit la lecture sur faux
+    stop(queue, author);
+
 
     let embedMessage = { embeds: [BotManager.sendEmbedMsg(0x9c36f5, null, null, null, 
         `*⏸️ -- La lecture est terminée, vous pouvez toujours rajouter des vidéos dans la file d'attente ` + 
@@ -212,6 +251,7 @@ function events(bot, author, message) {
     })
     .on('playSong', (queue, song) => {
         
+        actualQueue = queue; // Définit la file d'attente actuel
         queriesVideo.pop(); // On retire dans la liste la vidéo en cours
 
         let embedMessage = { embeds: [BotManager.sendEmbedMsg(0x9c36f5, null, null, null, 
@@ -224,7 +264,7 @@ function events(bot, author, message) {
     })
     .on('finishSong', (queue, song) => { 
 
-        if(queriesVideo.length <= 0) { stop(bot, queue, author); } 
+        if(queriesVideo.length <= 0) { unrun(queue, author); } 
         else { 
             
             let nextSong = queriesVideo[queriesVideo.length-1];
@@ -235,7 +275,7 @@ function events(bot, author, message) {
     })
     .on('finish', queue => { 
         
-        if(queriesVideo.length <= 0) { stop(bot, queue, author); } 
+        if(queriesVideo.length <= 0) { unrun(queue, author); } 
         else { run(bot, queriesVideo[queriesVideo.length-1], message); }
 
     }).on('empty', queue => {
@@ -256,7 +296,7 @@ function events(bot, author, message) {
 
             /* -----------------------------  */
 
-module.exports = { checkUserIsNotInMusicChannel, play, add };
+module.exports = { checkUserIsNotInMusicChannel, play, stop, add, getActualQueue };
 
             /* -----------------------------  */
 
