@@ -1,0 +1,2 @@
+worker1: python bots/BotTest.py
+worker2: python bots/EvhoBotsCfg.py
