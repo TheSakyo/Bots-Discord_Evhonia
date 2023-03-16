@@ -29,7 +29,7 @@ class Main {
             /*  ¤ Conseil : Apprenez à utiliser/coder son bot discord en utilisant les bonne méthodes, Lisez la documentation officiel : https://discord.js.org/#/docs/discord.js/  */                                                              
             /************************************************************************************************************************************************************************/
 
-        const EvhoMusic = require("./bots/EvhoMusic"); // Class Bot de Musique
+        const EvhoSong = require("./bots/EvhoSong"); // Class Bot de Musique
         const EvhoBotsCfg = require("./bots/EvhoBotsCfg"); // Class Bot de Configuration
 
         /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -42,7 +42,7 @@ class Main {
             /*  ¤ Conseil : Apprenez à utiliser/coder son bot discord en utilisant les bonne méthodes, Lisez la documentation officiel : https://discord.js.org/#/docs/discord.js/  */                                                              
             /************************************************************************************************************************************************************************/
 
-        const EvhoMusicClient = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents: intents });
+        const EvhoSongClient = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents: intents });
         const EvhoBotsCfgClient = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents: intents });
 
         /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -56,7 +56,7 @@ class Main {
             /************************************************************************************************************************************************************************/
 
         new ClientBot(EvhoBotsCfg, EvhoBotsCfgClient, ['dnd', ['la config des Bots', ActivityType.Watching, null]], CFG.EVHOBOTSCFG_PREFIX_CMD, "cfg!", CFG.EVHOBOTSCFG_TOKEN);
-        new ClientBot(EvhoMusic, EvhoMusicClient, ['dnd', ['de la Musique', ActivityType.Listening, null]], CFG.EVHOMUSIC_PREFIX_CMD, "m!", CFG.EVHOMUSIC_TOKEN);
+        new ClientBot(EvhoSong, EvhoSongClient, ['dnd', ['des sons', ActivityType.Listening, null]], CFG.EVHOSONG_PREFIX_CMD, "s!", CFG.EVHOSONG_TOKEN);
 
         /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
     }
