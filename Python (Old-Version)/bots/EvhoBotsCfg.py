@@ -3,7 +3,7 @@ import managers.UserManager # IMPORTATION UserManager
 from discord.ext import commands # IMPORTATION DISCORD
 
 
-EvhoBotsCfg_Token = "NzYzMzMwODMwMDAwMDYyNDc0.X32JOw.m50Bp-2hTugolHm2ZfbPnXhMZjU"
+EvhoBotsCfg_Token = "TOKEN BOT HERE"
 
 EvhoBotsCfg_prefix = "conf!" # Variable pour la commande (préfix)
 
