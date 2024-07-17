@@ -2,7 +2,7 @@ import discord # IMPORTATION DISCORD
 from discord.ext import commands # IMPORTATION DISCORD
 
 
-BotTest_Token = "NzYzNDY5MTg4Njg0OTcyMDcy.X34KFw.lPNm_j2TOxrb3Ic8KxIiTzhDyiU"
+BotTest_Token = "TOKEN BOT HERE"
 
 BotTest_prefix = "t!" # Variable pour la commande (préfix)
 
